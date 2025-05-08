@@ -15,9 +15,14 @@ export default class GameSavingLoader {
    * 
    * @return {object} - объект игрового сохранения в формате 
    */
-  static load(data = '') {
-    return read(data)
-      .then((result) => json(result))
-      .then((jsonString) => JSON.parse(jsonString));
+  static async load(data = '') {
+    try {
+      const file = await read(data);
+      const jsonFile = await json(file);
+      
+      return JSON.parse(jsonFile);
+    } catch (error) {
+      throw new Error('Файл пуст');
+    }
   }
 }

@@ -2,7 +2,7 @@ import GameSavingLoader from '../GameSavingLoader';
 import { testData } from '../data/test-data';
 
 describe('Класс GameSavingLoader', () => {
-  it('Переданы данные для загрузки; возвращается JS-объект с данными сохранения', () => {
+  it('Переданы данные для загрузки; возвращается JS-объект с данными сохранения', async () => {
     const data = {
       id: 9,
       created: 1546300800,
@@ -14,9 +14,7 @@ describe('Класс GameSavingLoader', () => {
       },
     };
 
-    return GameSavingLoader.load(testData).then((result) => {
-      expect(result).toEqual(data);
-    });
+    return expect(GameSavingLoader.load(testData)).resolves.toEqual(data);
   });
 
   it('Не переданы данные для загрузки; вызывается исключение', () => {

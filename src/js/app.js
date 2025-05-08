@@ -1,5 +1,7 @@
 import GameSavingLoader from './game/GameSavingLoader.js';
+import { testData } from './game/data/test-data.js';
 
-GameSavingLoader.load()
-  .then((result) => console.log(result), 
-    (error) => console.log(error));
+(async () => {
+  const data = await GameSavingLoader.load(testData);
+  console.log(data);
+})();
